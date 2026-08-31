@@ -1,5 +1,7 @@
-// 等待整个页面加载完毕后再执行
+// script.js - 专门存放动作指令
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("脚本已加载，开始运行..."); // 这是一个检查点
 
     // --- 1. 轮播图逻辑 ---
     const slides = document.querySelectorAll('.carousel-slide');
@@ -12,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
 
         currentSlide = index;
-
         if (currentSlide >= totalSlides) currentSlide = 0;
         if (currentSlide < 0) currentSlide = totalSlides - 1;
 
@@ -21,9 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 自动播放
-    setInterval(() => {
-        goToSlide(currentSlide + 1);
-    }, 5000);
+    if(totalSlides > 0) {
+        setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 5000);
+    }
 
     // --- 2. 模态框逻辑 ---
     const joinBtn = document.querySelector('.join-btn');
@@ -46,25 +49,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 3. 导航栏平滑滚动 (核心修复部分) ---
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    // --- 3. 导航栏平滑滚动 ---
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // 阻止默认跳转
+            e.preventDefault(); 
             
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
-            console.log("点击了链接:", targetId, "找到元素:", targetElement); // 调试用
-
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start' 
                 });
             } else {
-                console.warn("未找到ID为 " + targetId + " 的元素");
+                console.warn("找不到ID为 " + targetId + " 的区域，请检查HTML中的id是否匹配");
             }
         });
     });
-
 });
