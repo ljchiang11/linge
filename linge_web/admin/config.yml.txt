@@ -1,0 +1,60 @@
+# 1. 后端配置（使用 GitHub 和 Netlify 的免密网关）
+backend:
+  name: git-gateway
+  branch: main # 如果你的 GitHub 默认分支是 master，请改成 master
+
+# 2. 媒体文件（图片、视频等）存放位置
+media_folder: "assets/uploads" 
+public_folder: "/assets/uploads" 
+
+# 3. 内容集合配置
+collections:
+  # 集合一：网站全局设置（Logo、社交链接等）
+  - name: "settings"
+    label: "网站全局设置"
+    files:
+      - file: "_data/site.json" # 数据保存在根目录的 _data/site.json 中
+        name: "general"
+        label: "基础信息"
+        fields:
+          - { label: "网站Logo", name: "logo", widget: "image" }
+          - { label: "B站链接", name: "bilibili", widget: "string" }
+          - { label: "小红书链接", name: "xiaohongshu", widget: "string" }
+          - { label: "微信公众号链接", name: "wechat", widget: "string" }
+
+  # 集合二：轮播图管理
+  - name: "carousel"
+    label: "首页轮播图"
+    folder: "_data/carousel" # 数据保存在根目录的 _data/carousel 文件夹中
+    create: true # 允许在后台新增轮播图
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "副标题", name: "subtitle", widget: "string" }
+      - { label: "背景图片", name: "image", widget: "image" }
+      - { label: "展示视频链接", name: "video_url", widget: "string" }
+
+  # 集合三：乐团成员管理
+  - name: "members"
+    label: "乐团成员"
+    folder: "_data/members" # 数据保存在根目录的 _data/members 文件夹中
+    create: true # 允许在后台新增成员
+    slug: "{{name}}"
+    fields:
+      - { label: "姓名", name: "name", widget: "string" }
+      - { label: "职务/声部", name: "role", widget: "string" }
+      - { label: "头像", name: "avatar", widget: "image" }
+      - { label: "个人简介", name: "bio", widget: "text" }
+
+  # 集合四：欢迎加入页面
+  - name: "join"
+    label: "欢迎加入页面"
+    files:
+      - file: "_data/join.json"
+        name: "join_info"
+        label: "招新信息"
+        fields:
+          - { label: "页面大标题", name: "title", widget: "string" }
+          - { label: "招募要求", name: "requirements", widget: "markdown" }
+          - { label: "排练时间与地点", name: "schedule", widget: "markdown" }
+          - { label: "联系咨询方式", name: "contact", widget: "text" }
