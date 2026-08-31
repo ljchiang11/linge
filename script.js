@@ -3,24 +3,24 @@
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.nav-dot');
     
-    function goToSlide(index) {
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
+    function goToSlide(索引) {
+      幻灯片[当前幻灯片].classList.移除('active');
+      圆点[当前幻灯片].classList.移除('active');
       currentSlide = index;
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
+      幻灯片[当前幻灯片].classList.添加('active');
+      圆点[当前幻灯片].classList.添加('active');
     }
     
-    setInterval(() => { goToSlide((currentSlide + 1) % slides.length); }, 5000);
+    setInterval(() => { goToSlide((当前幻灯片 + 1) % slides.length); }, 5000);
 
-    function openJoinModal() {
-      document.getElementById('joinModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+    函数 openJoinModal() {
+      document.getElementById('joinModal').classList.添加('打开');
+      文档.主体.样式.溢出 = '隐藏';
     }
 
     函数 closeJoinModal(事件) {
       如果 (!事件 || 事件.目标 === 文档.getElementById('joinModal')) {
-        document.getElementById('joinModal').classList.remove('open');
+        document.getElementById('joinModal').classList.remove('打开');
         文档.主体.样式.溢出 = '';
       }
     }
