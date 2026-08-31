@@ -14,14 +14,14 @@
     .玻璃 { 背景: rgba(255,255,255,0.03); 背景滤镜: 模糊(12px); 边框: 1px 实线 rgba(255,255,255,0.06); }
     .玻璃卡片 { 背景: rgba(255,255,255,0.04); 背景滤镜: 模糊(16px); 边框: 1px 实线 rgba(255,255,255,0.08); 过渡: 全部 0.4s 缓动; }
     .玻璃卡片:悬停 { 背景: rgba(255,255,255,0.08); 边框颜色: rgba(245,158,11,0.3); 变换: 平移Y轴(-4像素); }
-    .hero-glow { position: absolute; width: 600px; height: 600px; background: (, rgba(245,158,11,0.15) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
+    .hero-glow { position: absolute; 宽度: 600像素; 高度: 600像素; 背景: (, rgba(245,158,11,0.15) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
     .section-glow { position: absolute; width: 400px; height: 400px; background: 径向渐变(圆形, rgba(139,92,246,0.1) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
     .轮播图项 { 透明度: 0; 过渡: 透明度 1秒 缓入缓出; 位置: 绝对; 内边距: 0; }
     .carousel-slide.active { opacity: 1; }
-    .member-avatar { width: 72px; height: 72px; border-radius: 50%; background: 线性渐变(135度, #f59e0b, #ec4899); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; color: white; flex-shrink: 0; }
+    .member-avatar { width: 72px; height: 72px; border-radius: 50%; background: 线性渐变(135度, #f59e0b, #ec4899); display: flex; align-items: 居中; justify-content: 居中; 字体粗细: 700; 字体大小: 1.25rem; 颜色: 白色; 弹性收缩: 0; }
     .社交按钮 { 宽度: 48像素; 高度: 48像素; 边框圆角: 12像素; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 背景: rgba(255,255,255,0.05); 边框: 1像素 实线 rgba(255,255,255,0.1); 过渡: 全部 0.3秒 缓和; 光标: 指针; }
-    .social-btn:hover { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); transform: scale(1.1); }
-    .nav-dot { width: 8px; 高度: 8px; 圆角半径: 50%; 背景: rgba(255,255,255,0.3); 过渡: 所有属性 0.3秒 缓和; 光标: 指针; }
+    .social-btn:hover { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); transform: 缩放(1.1); }
+    .nav-dot { 宽度: 8px; 高度: 8px; 圆角半径: 50%; 背景: rgba(255,255,255,0.3); 过渡: 所有属性 0.3秒 缓和; 光标: 指针; }
     .nav-dot.active { 背景: #f59e0b; 宽度: 24px; 圆角: 4px; }
     .video-card { position: relative; overflow: hidden; border-radius: 16px; }
     .video-card::after { content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; 高度: 56px; 背景: rgba(245,158,11,0.9); 圆角半径: 50%; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 字体大小: 1.25rem; 颜色: 白色; 透明度: 0; 过渡: 透明度 0.3秒 缓动; }
