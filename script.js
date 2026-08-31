@@ -22,18 +22,17 @@ function goToSlide(index) {
     if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
 
-// 自动播放 (可选，每5秒切换一次)
+// 自动播放（可选，每5秒切换一次）
 setInterval(() => {
     goToSlide(currentSlide + 1);
 }, 5000);
 
 
-// 2. 模态框逻辑 (如果有"加入我们"弹窗)
+// 2. 模态框逻辑（如果有“加入我们”弹窗）
 const joinBtn = document.querySelector('.join-btn');
 const modalOverlay = document.querySelector('.modal-overlay');
 const closeModalBtn = document.querySelector('.close-modal');
 
-// 点击加入按钮打开弹窗
 if (joinBtn && modalOverlay) {
     joinBtn.addEventListener('click', () => {
         modalOverlay.classList.add('open');
@@ -60,10 +59,10 @@ if (closeModalBtn && modalOverlay) {
 // 3. 导航栏平滑滚动逻辑
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // 阻止默认的跳转行为
-
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+        e.preventDefault(); // 阻止默认跳转行为
+        
+        const targetId = this.getAttribute('href'); // 获取 href 属性，例如 "#about"
+        const targetElement = document.querySelector(targetId); // 找到对应的元素
 
         if (targetElement) {
             targetElement.scrollIntoView({
