@@ -1,32 +1,247 @@
-  <style>
-    * { 字体族: 'Noto Sans SC', 无衬线字体; }
-    .渐变文本 { 背景: 线性渐变(135度, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .玻璃 { 背景: rgba(255,255,255,0.03); 背景滤镜: 模糊(12px); 边框: 1px 实线 rgba(255,255,255,0.06); }
-    .玻璃卡片 { 背景: rgba(255,255,255,0.04); 背景滤镜: 模糊(16px); 边框: 1px 实线 rgba(255,255,255,0.08); 过渡: 全部 0.4s 缓动; }
-    .玻璃卡片:悬停 { 背景: rgba(255,255,255,0.08); 边框颜色: rgba(245,158,11,0.3); 变换: 平移Y轴(-4像素); }
-    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, 透明度 70%); 圆角半径: 50%; pointer-events: none; }
-    .section-glow { 位置: 绝对; 宽度: 400px; 高度: 400px; 背景: 径向渐变(圆形, rgba(139,92,246,0.1) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
-    .轮播图项 { 透明度: 0; 过渡: 透明度 1秒 缓入缓出; 位置: 绝对; 内边距: 0; }
-    .carousel-slide.active { opacity: 1; }
-    .member-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #ec4899); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; color: white; flex-shrink: 0; }
-    .社交按钮 { 宽度: 48像素; 高度: 48像素; 圆角半径: 12像素; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 背景颜色: rgba(255,255,255,0.05); 边框: 1像素 实线 rgba(255,255,255,0.1); 过渡: 全部 0.3秒 缓和; 光标: 指针; }
-rgba245,158,11,0.15；边框颜色：rgba245,158,11,0.4); 变换: 缩放(1.1
-{ 宽度: 8px; 高度: 8px; 圆角半径: 50%; 背景: rgba(255,255,255,0.3); 过渡: 所有属性 0.3秒 缓和; 光标: 指针; }
-    .nav-dot.active { 背景: #f59e0b; 宽度: 24px; 圆角: 4px; }
-    .video-card { 位置: 相对; 溢出: 隐藏; 圆角半径: 16px; }
-{ 内容: '▶'; 位置: 绝对; 顶部: 50%; 左侧: 50%; 变换: 平移(-50%, -50%); 宽度: 56像素; 高度: 56像素; 背景: rgba(245,158,11,0.9); 圆角: 50%; 显示: 弹性盒子; 对齐方式: 居中; justify-content: 居中; 字体大小: 1.25rem; 颜色: 白色; 不透明度: 0; 过渡: 不透明度 0.3秒 缓动; }
-    .video-card:hover::after { opacity: 1; }
-    .video-card:悬停图片 { 变换: 缩放(1.05); }
-{ 过渡: 变换 0.5秒 缓动; }
-    .join-btn { : 135度, #f59e0b, #ec4899；内边距：16px 48px; 圆角半径: 9999px; 字体粗细
-    .join-btn:悬停 { 变换: translateY(-2px); box-shadow: 0 12px 40px rgba(245,158,11,0.4); }
-{ 位置: 固定; 内嵌: 0; 背景: rgba(0,0,0,0.85); 背景区滤: 模糊(8px); 层叠顺序: 100; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 透明度: 0; pointer-events: none; 过渡: 透明度 0.4s ease; }
-    .modal-overlay.open { 透明度: 1; pointer-events: all; }
-{ 背景: #0a0a0a; 边框: 1px 实线 rgba(255,255,255,0.1); border-radius: 24px; max-width: 640px; width: 90%; max-height: 85vh; overflow-y: auto; transform: scale(0.95); 过渡: transform 0.4s ease; }
-    .模态遮罩.打开 .模态内容 { 变换: 缩放(1); }
-{ 宽度: 180px; 高度: 180px; 背景: 白色; 圆角半径: 12px; 显示方式: 弹性布局; 对齐项目: 居中; justify-content: 居中; 颜色: #333; 字体大小: 0.75rem; 文本对齐: 居中; 内边距: 8px; }
-    .timeline-dot { width: 12px; 高度: 12px; border-radius: 50%; 背景: #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,0.5); }
-  宽度: 2px; 背景: 线性渐变(从 底部, #f59e0b, 透明)
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .float-anim { animation: float 4s ease-in-out infinite; }
-  </style>
+/* 全局字体设置 */
+* {
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+    background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 玻璃拟态效果 - 导航栏 */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* 玻璃卡片效果 */
+.glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(245, 158, 11, 0.3);
+    transform: translateY(-4px);
+}
+
+/* 背景光晕 */
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.section-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* 轮播图相关 */
+.carousel-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    padding: 0;
+    inset: 0; /* 补全了缺失的定位属性 */
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* 成员头像 */
+.member-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #ec4899);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* 社交按钮 */
+.social-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    transform: scale(1.1);
+}
+
+/* 导航圆点 */
+.nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-dot.active {
+    background: #f59e0b;
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* 视频卡片 */
+.video-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.video-card::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(245, 158, 11, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover::after {
+    opacity: 1;
+}
+
+.video-card:hover img {
+    transform: scale(1.05);
+}
+
+.video-card img {
+    transition: transform 0.5s ease;
+}
+
+/* 加入按钮 */
+.join-btn {
+    background: linear-gradient(135deg, #f59e0b, #ec4899);
+    padding: 16px 48px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+}
+
+.join-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+}
+
+/* 模态框 (弹窗) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    max-width: 640px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.4s ease;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
+.qr-placeholder {
+    width: 180px;
+    height: 180px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 8px;
+}
+
+/* 时间线 */
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+.timeline-line { /* 修复了这里缺失的类名 */
+    width: 2px;
+    background: linear-gradient(to bottom, #f59e0b, transparent);
+}
+
+/* 浮动动画 */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.float-anim {
+    animation: float 4s ease-in-out infinite;
+}
