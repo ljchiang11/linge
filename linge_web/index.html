@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <链接 关系="样式表" href="./style.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>上海灵格吉他合奏团</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <脚本 src="https://cdn.tailwindcss.com"></脚本>
+  <链接 href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    * { font-family: 'Noto Sans SC', sans-serif; }
-    .gradient-text { background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); }
-    .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); transition: all 0.4s ease; }
-    .glass-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(245,158,11,0.3); transform: translateY(-4px); }
-    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-    .section-glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-    .carousel-slide { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; }
+    * { 字体族: 'Noto Sans SC', 无衬线字体; }
+    .渐变文本 { 背景: 线性渐变(135度, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .玻璃 { 背景: rgba(255,255,255,0.03); 背景滤镜: 模糊(12px); 边框: 1px 实线 rgba(255,255,255,0.06); }
+    .玻璃卡片 { 背景: rgba(255,255,255,0.04); 背景滤镜: 模糊(16px); 边框: 1px 实线 rgba(255,255,255,0.08); 过渡: 全部 0.4s 缓动; }
+    .玻璃卡片:悬停 { 背景: rgba(255,255,255,0.08); 边框颜色: rgba(245,158,11,0.3); 变换: 平移Y轴(-4像素); }
+    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
+    .section-glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, 透明 70%); 边框半径: 50%; 指针事件: 无; }
+    .轮播图项 { 透明度: 0; 过渡: 透明度 1秒 缓入缓出; 位置: 绝对; 内边距: 0; }
     .carousel-slide.active { opacity: 1; }
     .member-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #ec4899); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; color: white; flex-shrink: 0; }
-    .social-btn { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; cursor: pointer; }
+    .社交按钮 { 宽度: 48像素; 高度: 48像素; 边框圆角: 12像素; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 背景: rgba(255,255,255,0.05); 边框: 1像素 实线 rgba(255,255,255,0.1); 过渡: 全部 0.3秒 缓和; 光标: 指针; }
     .social-btn:hover { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); transform: scale(1.1); }
-    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: all 0.3s ease; cursor: pointer; }
-    .nav-dot.active { background: #f59e0b; width: 24px; border-radius: 4px; }
+    .nav-dot { width: 8px; 高度: 8px; 圆角半径: 50%; 背景: rgba(255,255,255,0.3); 过渡: 所有属性 0.3秒 缓和; 光标: 指针; }
+    .nav-dot.active { 背景: #f59e0b; 宽度: 24px; 圆角: 4px; }
     .video-card { position: relative; overflow: hidden; border-radius: 16px; }
-    .video-card::after { content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: rgba(245,158,11,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: white; opacity: 0; transition: opacity 0.3s ease; }
-    .video-card:hover::after { opacity: 1; }
-    .video-card:hover img { transform: scale(1.05); }
-    .video-card img { transition: transform 0.5s ease; }
-    .join-btn { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 16px 48px; border-radius: 9999px; font-weight: 700; font-size: 1.125rem; color: white; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(245,158,11,0.3); }
+    .video-card::after { content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; 高度: 56px; 背景: rgba(245,158,11,0.9); 圆角半径: 50%; 显示方式: 弹性布局; 对齐方式: 居中; justify-content: 居中; 字体大小: 1.25rem; 颜色: 白色; 透明度: 0; 过渡: 透明度 0.3秒 缓动; }
+    .视频卡:悬停::伪元素 { 透明度: 1; }
+    .视频卡:悬停 图片 { 变换: 缩放(1.05); }
+    .视频卡 图片 { 过渡: 变换 0.5秒 缓动; }
+    .join-btn { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 16px 48px; border-radius: 9999px; font-weight: 700; font-size: 1.125rem; 颜色: 白色; 边框: 无; 光标: 指针; 过渡: 全部 0.3秒 缓和; 阴影: 0 8px 32px rgba(245,158,11,0.3); }
     .join-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,158,11,0.4); }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal-content { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; max-width: 640px; width: 90%; max-height: 85vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.4s ease; }
     .modal-overlay.open .modal-content { transform: scale(1); }
-    .qr-placeholder { width: 180px; height: 180px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #333; font-size: 0.75rem; text-align: center; padding: 8px; }
-    .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,0.5); }
-    .timeline-line { width: 2px; background: linear-gradient(to bottom, #f59e0b, transparent); }
+    .qr-placeholder { width: 180px; height: 180px; background: white; border-radius: 12px; 显示方式: 弹性布局; align-items: center; justify-content: center; color: #333; font-size: 0.75rem; text-align: center; padding: 8px; }
+    .时间线圆点 { 宽度: 12px; 高度: 12px; 边框半径: 50%; 背景：#f59e0b；盒阴影: 0 0 12px rgba(245,158,11,0.5); }
+ { 宽度: 2px; 背景: 线性渐变(从 底部, #f59e0b, 透明); }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .float-anim { animation: float 4s ease-in-out infinite; }
   </style>
@@ -42,7 +44,7 @@
 </head>
 <body class="bg-black text-white overflow-x-hidden">
 
-  <!-- Navigation -->
+  <!-- 导航 -->
   <nav class="fixed top-0 left-0 right-0 z-50 glass px-6 py-4">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -56,18 +58,18 @@
         <a href="#join" class="hover:text-amber-400 transition-colors">加入我们</a>
       </div>
     </div>
-  </nav>
+  </导航>
 
   <!-- Hero Carousel -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="hero-glow top-1/4 left-1/4"></div>
-    <div class="hero-glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);"></div>
+    <div class="hero-glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, 透明 70%);"></div>
     
     <div id="carousel" class="absolute inset-0">
-      <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?w=1920&q=80') center/cover;">
+      <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?w=1920&q=80') 居中/覆盖;">
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="text-center px-6">
-            <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">Shanghai Lingge Guitar Ensemble</p>
+            <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">上海凌歌吉他乐团</p>
             <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">弦上灵格<br><span class="gradient-text">共鸣上海</span></h1>
             <p class="text-gray-400 text-lg max-w-xl mx-auto">以现代先锋之姿，演绎古典与当代的吉他交响</p>
           </div>
@@ -312,7 +314,7 @@
     </div>
   </div>
 
-  <!-- Toast -->
+  <!-- 通知 -->
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-lg border border-white/10 text-sm text-white opacity-0 pointer-events-none transition-all duration-300 z-[200]"></div>
 
   <script>
@@ -321,24 +323,24 @@
     const dots = document.querySelectorAll('.nav-dot');
     
     function goToSlide(index) {
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
-      currentSlide = index;
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
+      幻灯片[当前幻灯片].classList.remove('active');
+      点击[当前幻灯片].classList.remove('active');
+      当前幻灯片 = 索引;
+      幻灯片[当前幻灯片].classList.添加('active');
+      点[当前幻灯片].classList.添加('active');
     }
     
     setInterval(() => { goToSlide((currentSlide + 1) % slides.length); }, 5000);
 
-    function openJoinModal() {
+    函数 openJoinModal() {
       document.getElementById('joinModal').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeJoinModal(event) {
-      if (!event || event.target === document.getElementById('joinModal')) {
+    函数 closeJoinModal(事件) {
+      如果 (!事件 || 事件.目标 === 文档.getElementById('joinModal')) {
         document.getElementById('joinModal').classList.remove('open');
-        document.body.style.overflow = '';
+        文档.主体.样式.溢出 = '';
       }
     }
 
@@ -351,12 +353,13 @@
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      锚点.addEventListener('点击', 函数(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        如果 (目标) 目标.scrollIntoView({ 行为: '平滑', 块: '开始' });
       });
     });
   </script>
 </body>
+    <脚本 src="./script.js"></脚本>
 </html>
