@@ -1,68 +1,154 @@
-// 轮播图逻辑
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.nav-dot');
-const totalSlides = slides.length;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 防止浏览器自动翻译网页内容 -->
+  <meta name="google" content="notranslate">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上海灵格吉他合奏团</title>
+  
+  <!-- 引入样式表 -->
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
 
-// 切换幻灯片函数
-function goToSlide(index) {
-    // 移除当前激活状态
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
+<body class="bg-black text-white overflow-x-hidden">
 
-    // 更新索引
-    currentSlide = index;
+  <!-- 导航栏 -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">灵</div>
+        <span class="text-lg font-bold tracking-wider">上海灵格吉他合奏团</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+        <a href="#about" class="hover:text-amber-400 transition-colors">关于乐团</a>
+        <a href="#members" class="hover:text-amber-400 transition-colors">乐团成员</a>
+        <a href="#events" class="hover:text-amber-400 transition-colors">演出活动</a>
+        <a href="#join" class="hover:text-amber-400 transition-colors">加入我们</a>
+      </div>
+    </div>
+  </nav>
 
-    // 处理循环逻辑
-    if (currentSlide >= totalSlides) currentSlide = 0;
-    if (currentSlide < 0) currentSlide = totalSlides - 1;
-
-    // 添加新的激活状态
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-}
-
-// 自动播放 (可选，每5秒切换一次)
-setInterval(() => {
-    goToSlide(currentSlide + 1);
-}, 5000);
-
-// 模态框逻辑 (如果有"加入我们"弹窗)
-const joinBtn = document.querySelector('.join-btn');
-const modalOverlay = document.querySelector('.modal-overlay');
-const closeModalBtn = document.querySelector('.close-modal'); // 假设你有关闭按钮
-
-if (joinBtn && modalOverlay) {
-    joinBtn.addEventListener('click', () => {
-        modalOverlay.classList.add('open');
-    });
-
-    // 点击遮罩层关闭
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('open');
-        }
-    });
+  <!-- Hero Carousel -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="hero-glow top-1/4 left-1/4"></div>
+    <div class="hero-glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);"></div>
     
-    // 点击关闭按钮关闭 (如果有的话)
-    if(closeModalBtn){
-        closeModalBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('open');
-        });
-    }
-}
+    <div id="carousel" class="absolute inset-0">
+      <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?w=1920&q=80') center/cover;">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center px-6">
+            <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">上海灵格吉他乐团</p>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">弦上灵格<br><span class="gradient-text">共鸣上海</span></h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">以现代先锋之姿，演绎古典与当代的吉他交响</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1465847899078-b413929f7120?w=1920&q=80') center/cover;">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center px-6">
+            <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">Concert Hall</p>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">舞台之上<br><span class="gradient-text">光影交织</span></h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">每一次演出，都是一次全新的声音探索</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80') center/cover;">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center px-6">
+            <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">Ensemble</p>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">多声共鸣<br><span class="gradient-text">和而不同</span></h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">从独奏到合奏，探索吉他的无限可能</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-// 导航栏平滑滚动
-document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+    <div class="absolute bottom-32 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      <div class="nav-dot active" onclick="goToSlide(0)"></div>
+      <div class="nav-dot" onclick="goToSlide(1)"></div>
+      <div class="nav-dot" onclick="goToSlide(2)"></div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+      <div class="social-btn" title="哔哩哔哩"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg></div>
+      <div class="social-btn" title="小红书"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+      <div class="social-btn" title="视频号"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div>
+      <div class="social-btn" title="微信公众号"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="relative py-24 px-6">
+    <div class="section-glow top-0 right-1/4"></div>
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-amber-400 text-sm tracking-[0.3em] mb-3">ARTISTIC TEAM</p>
+        <h2 class="text-4xl md:text-5xl font-black">艺术核心</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass-card rounded-3xl p-8 md:p-10">
+          <div class="flex items-start gap-6">
+            <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-3xl font-black flex-shrink-0">指</div>
+            <div>
+              <h3 class="text-2xl font-bold mb-1">指挥 · 艺术总监</h3>
+              <p class="text-amber-400 text-sm mb-4">Conductor & Artistic Director</p>
+              <p class="text-gray-400 leading-relaxed">上海音乐学院吉他演奏硕士，曾赴西班牙、德国深造古典吉他演奏与指挥艺术。致力于推动中国吉他合奏艺术的发展，将现代先锋理念融入传统古典音乐，开创独特的"灵格之声"。</p>
+              <div class="flex gap-3 mt-6">
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">古典吉他</span>
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">乐团指挥</span>
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">现代音乐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card rounded-3xl p-8 md:p-10">
+          <div class="flex items-start gap-6">
+            <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white text-3xl font-black flex-shrink-0">作</div>
+            <div>
+              <h3 class="text-2xl font-bold mb-1">驻团作曲家</h3>
+              <p class="text-amber-400 text-sm mb-4">Resident Composer</p>
+              <p class="text-gray-400 leading-relaxed">中央音乐学院作曲系博士，专注于为吉他合奏团创作当代作品。作品融合电子音乐元素与吉他独特的音色质感，多次获得国内外作曲比赛奖项，为灵格合奏团量身定制多首原创曲目。</p>
+              <div class="flex gap-3 mt-6">
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">当代作曲</span>
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">电子音乐</span>
+                <span class="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-gray-400">先锋实验</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Members -->
+  <section id="members" class="relative py-24 px-6 bg-gradient-to-b from-transparent to-white/[0.02]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-amber-400 text-sm tracking-[0.3em] mb-3">ENSEMBLE MEMBERS</p>
+        <h2 class="text-4xl md:text-5xl font-black">乐团成员</h2>
+        <p class="text-gray-500 mt-4">来自上海各大音乐院校的优秀吉他演奏者</p>
+      </div>
+      <div class="space-y-12">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/10"></div>
+            <h3 class="text-xl font-bold text-amber-400">第一吉他声部</h3>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">林</div><p class="font-medium text-sm">林晓音</p><p class="text-gray-500 text-xs mt-1">声部长</p></div>
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">陈</div><p class="font-medium text-sm">陈默</p><p class="text-gray-500 text-xs mt-1">副声部长</p></div>
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">王</div><p class="font-medium text-sm">王子涵</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">李</div><p class="font-medium text-sm">李思远</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">张</div><p class="font-medium text-sm">张雨桐</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
+            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">赵</div><p class="font-medium text-sm">赵一鸣</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section
+
+---
