@@ -1,64 +1,38 @@
-// 轮播图逻辑
-let currentSlide = 0;
+// 1. 轮播图与导航点逻辑
 const slides = document.querySelectorAll('.carousel-slide');
 const dots = document.querySelectorAll('.nav-dot');
+let currentSlide = 0;
 const totalSlides = slides.length;
 
-// 切换幻灯片函数
+// 切换幻灯片的核心函数
 function goToSlide(index) {
-    // 移除当前激活状态
+    // 边界处理（循环播放）
+    if (index >= totalSlides) index = 0;
+    if (index < 0) index = totalSlides - 1;
+
+    // 移除旧的激活状态
     slides[currentSlide].classList.remove('active');
     dots[currentSlide].classList.remove('active');
 
-    // 更新索引
+    // 更新索引并添加新的激活状态
     currentSlide = index;
-
-    // 处理循环逻辑
-    if (currentSlide >= totalSlides) currentSlide = 0;
-    if (currentSlide < 0) currentSlide = totalSlides - 1;
-
-    // 添加新的激活状态
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
 }
 
-// 自动播放 (可选，每5秒切换一次)
+// 自动轮播：每 5 秒自动切换一次
 setInterval(() => {
     goToSlide(currentSlide + 1);
 }, 5000);
 
-// 模态框逻辑 (如果有"加入我们"弹窗)
-const joinBtn = document.querySelector('.join-btn');
-const modalOverlay = document.querySelector('.modal-overlay');
-const closeModalBtn = document.querySelector('.close-modal'); // 假设你有关闭按钮
-
-if (joinBtn && modalOverlay) {
-    joinBtn.addEventListener('click', () => {
-        modalOverlay.classList.add('open');
-    });
-
-    // 点击遮罩层关闭
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('open');
-        }
-    });
-    
-    // 点击关闭按钮关闭 (如果有的话)
-    if(closeModalBtn){
-        closeModalBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('open');
-        });
-    }
-}
-
-// 导航栏平滑滚动
+// 2. 顶部导航栏平滑滚动跳转逻辑
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // 阻止默认的锚点跳转
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         
+        // 如果找到了目标区域，则平滑滚动过去
         if (targetElement) {
             targetElement.scrollIntoView({
                 behavior: 'smooth'
