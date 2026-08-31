@@ -1,43 +1,68 @@
- <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.nav-dot');
-    
-    function goToSlide(索引) {
-      幻灯片[当前幻灯片].classList.移除('active');
-      圆点[当前幻灯片].classList.移除('active');
-      currentSlide = index;
-      幻灯片[当前幻灯片].classList.添加('active');
-      圆点[当前幻灯片].classList.添加('active');
-    }
-    
-    setInterval(() => { goToSlide((当前幻灯片 + 1) % slides.length); }, 5000);
+// 轮播图逻辑
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.nav-dot');
+const totalSlides = slides.length;
 
-    函数 openJoinModal() {
-      document.getElementById('joinModal').classList.添加('打开');
-      文档.主体.样式.溢出 = '隐藏';
-    }
+// 切换幻灯片函数
+function goToSlide(index) {
+    // 移除当前激活状态
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
 
-    函数 closeJoinModal(事件) {
-      如果 (!事件 || 事件.目标 === 文档.getElementById('joinModal')) {
-        document.getElementById('joinModal').classList.remove('打开');
-        文档.主体.样式.溢出 = '';
-      }
-    }
+    // 更新索引
+    currentSlide = index;
 
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.style.opacity = '1';
-      toast.style.transform = 'translate(-50%, 0)';
-      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translate(-50%, 20px)'; }, 3000);
-    }
+    // 处理循环逻辑
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      锚点.addEventListener('点击', 函数(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        如果 (目标) 目标.scrollIntoView({ 行为: '平滑', 块: '开始' });
-      });
+    // 添加新的激活状态
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+// 自动播放 (可选，每5秒切换一次)
+setInterval(() => {
+    goToSlide(currentSlide + 1);
+}, 5000);
+
+// 模态框逻辑 (如果有"加入我们"弹窗)
+const joinBtn = document.querySelector('.join-btn');
+const modalOverlay = document.querySelector('.modal-overlay');
+const closeModalBtn = document.querySelector('.close-modal'); // 假设你有关闭按钮
+
+if (joinBtn && modalOverlay) {
+    joinBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('open');
     });
-  </脚本>
+
+    // 点击遮罩层关闭
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove('open');
+        }
+    });
+    
+    // 点击关闭按钮关闭 (如果有的话)
+    if(closeModalBtn){
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('open');
+        });
+    }
+}
+
+// 导航栏平滑滚动
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
