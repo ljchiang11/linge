@@ -254,3 +254,10 @@ section {
 .float-anim {
     animation: float 4s ease-in-out infinite;
 }
+/* 修复 Logo 尺寸与布局 */
+.logo img {
+    width: 150px;       /* 强制限制 Logo 宽度，你可以根据喜好改成 120px 或 200px */
+    height: auto;       /* 高度自动等比例缩放，防止变形 */
+    max-width: 100%;    /* 手机端自适应，防止超出屏幕 */
+    display: block;     /* 转为块级元素，消除底部多余的空白间隙 */
+}
