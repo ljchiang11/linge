@@ -1,27 +1,29 @@
 backend:
   name: git-gateway
-  branch: main # 你的主分支名称
+  branch: main # 如果你的主分支叫 master，请改成 master
 
-media_folder: "images" # 上传图片存放的文件夹
-public_folder: "/images" # 图片访问路径
+media_folder: "public/images/uploads" # 图片上传后存放的位置
+public_folder: "/images/uploads" # 网站访问图片的路径
 
 collections:
-  - name: "global"
-    label: "全局设置"
-    files:
-      - name: "general"
-        label: "网站基本信息"
-        file: "_data/site.yml" # 我们将把数据存在这里
-        fields:
-          - { label: "网站标题", name: "site_title", widget: "string" }
-          - { label: "Logo图片", name: "logo", widget: "image" }
-
-  - name: "team"
-    label: "团队成员/招聘"
-    folder: "_team"
+  - name: "events"
+    label: "演出活动"
+    folder: "data/events" # 数据存放文件夹
     create: true
-    slug: "{{name}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "姓名/职位", name: "name", widget: "string" }
-      - { label: "照片", name: "photo", widget: "image" }
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "地点", name: "location", widget: "string" }
+      - { label: "封面图", name: "image", widget: "image" }
+      - { label: "详情内容", name: "body", widget: "markdown" }
+
+  - name: "members"
+    label: "乐团成员"
+    folder: "data/members"
+    create: true
+    fields:
+      - { label: "姓名", name: "name", widget: "string" }
+      - { label: "声部/职位", name: "role", widget: "string" }
+      - { label: "头像", name: "avatar", widget: "image" }
       - { label: "简介", name: "bio", widget: "text" }
