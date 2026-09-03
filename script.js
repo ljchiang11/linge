@@ -83,5 +83,3 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("找不到ID为 " + targetId + " 的区域，请检查HTML中的id是否匹配");
             }
         });
-    });
-});
