@@ -62,13 +62,14 @@ section {
 
 /* 轮播图相关 */
 .carousel-slide {
-    position: absolute; /* 关键：绝对定位，让它们叠在一起 */
+    background-color: #000 !important; /* 强制黑色背景，防止透明 */
+    position: relative; /* 关键：绝对定位，让它们叠在一起 */
     inset: 0;           /* 关键：上下左右都贴边，填满父容器 */
     width: 100%;
     height: 100%;
     opacity: 0;         /* 默认隐藏 */
     transition: opacity 1s ease-in-out; /* 淡入淡出效果 */
-    z-index: 0;         /* 层级为0 */
+    z-index: 10;         /* 层级为10 */
     
     /* 确保内容居中（如果里面用了 flex 布局） */
     display: flex; 
