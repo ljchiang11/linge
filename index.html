@@ -171,34 +171,68 @@
   </section>
 
   <!-- Members -->
-  <section id="members" class="relative py-24 px-6 bg-gradient-to-b from-transparent to-white/[0.02]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <p class="text-amber-400 text-sm tracking-[0.3em] mb-3">ENSEMBLE MEMBERS</p>
-        <h2 class="text-4xl md:text-5xl font-black">乐团成员</h2>
-        <p class="text-gray-500 mt-4">来自上海各大音乐院校的优秀吉他演奏者</p>
-      </div>
-      <div class="space-y-12">
-        <div>
-          <div class="flex items-center gap-4 mb-6">
-            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/10"></div>
-            <h3 class="text-xl font-bold text-amber-400">第一吉他声部</h3>
-            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
+<section id="members" class="relative py-24 px-6 bg-gradient-to-b from-transparent to-white/[0.02]">
+  <div class="max-w-6xl mx-auto">
+    <!-- 标题部分 -->
+    <div class="text-center mb-16">
+      <p class="text-amber-400 text-sm tracking-[0.3em] mb-3">ENSEMBLE MEMBERS</p>
+      <h2 class="text-4xl md:text-5xl font-black">乐团成员</h2>
+      <p class="text-gray-500 mt-4">来自上海各大音乐院校的优秀吉他演奏者</p>
+    </div>
+
+    <!-- 成员列表容器 -->
+    <div class="space-y-12">
+      <div>
+        <!-- 声部标题 -->
+        <div class="flex items-center gap-4 mb-6">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/10"></div>
+          <h3 class="text-xl font-bold text-amber-400">第一吉他声部</h3>
+          <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
+        </div>
+
+        <!-- 头像网格 -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <!-- 成员 1 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">林</div>
+            <p class="font-medium text-sm">林晓音</p>
+            <p class="text-gray-500 text-xs mt-1">声部长</p>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">林</div><p class="font-medium text-sm">林晓音</p><p class="text-gray-500 text-xs mt-1">声部长</p></div>
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">陈</div><p class="font-medium text-sm">陈默</p><p class="text-gray-500 text-xs mt-1">副声部长</p></div>
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">王</div><p class="font-medium text-sm">王子涵</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">李</div><p class="font-medium text-sm">李思远</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">张</div><p class="font-medium text-sm">张雨桐</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
-            <div class="text-center group cursor-pointer"><div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">赵</div><p class="font-medium text-sm">赵一鸣</p><p class="text-gray-500 text-xs mt-1">演奏员</p></div>
+          <!-- 成员 2 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">陈</div>
+            <p class="font-medium text-sm">陈默</p>
+            <p class="text-gray-500 text-xs mt-1">副声部长</p>
+          </div>
+          <!-- 成员 3 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">王</div>
+            <p class="font-medium text-sm">王子涵</p>
+            <p class="text-gray-500 text-xs mt-1">演奏员</p>
+          </div>
+          <!-- 成员 4 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">李</div>
+            <p class="font-medium text-sm">李思远</p>
+            <p class="text-gray-500 text-xs mt-1">演奏员</p>
+          </div>
+          <!-- 成员 5 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">张</div>
+            <p class="font-medium text-sm">张雨桐</p>
+            <p class="text-gray-500 text-xs mt-1">演奏员</p>
+          </div>
+          <!-- 成员 6 -->
+          <div class="text-center group cursor-pointer">
+            <div class="member-avatar mx-auto mb-3 group-hover:scale-110 transition-transform">赵</div>
+            <p class="font-medium text-sm">赵一鸣</p>
+            <p class="text-gray-500 text-xs mt-1">演奏员</p>
           </div>
         </div>
       </div>
-    </div>
-          </div>
-    </div>
-  </section>
+    </div> 
+  </div>
+</section>
 
   <!-- Events -->
   <section id="events" class="relative py-24 px-6">
