@@ -80,7 +80,7 @@ section {
 #carousel {
     position: relative !important; /* 强制相对定位 */
     width: 100% !important;
-    height: 100% !important;       /* 占满父级 section 的高度 (即一屏高) */
+    height: 100vh !important;       /* 占满父级 section 的高度 (即一屏高) */
     background-color: #000 !important; /* 纯黑背景 */
     overflow: hidden;
     z-index: 1;
