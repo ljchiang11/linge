@@ -61,21 +61,22 @@ section {
 }
 
 /* 轮播图相关 */
-/* === 1. 轮播图父容器 (修复版) === */
-/* === 1. 轮播图父容器 (最终修正版) === */
+/* === 1. 轮播图父容器 (最终救火版) === */
 #carousel {
-    position: relative; /* 【关键修改】改回 relative！让它撑开父级高度 */
+    /* 【关键】不要用 absolute，改用 relative 配合高度撑开 */
+    position: relative; 
     width: 100%;
-    height: 100%;       /* 填满父级 section (h-screen) */
-    overflow: hidden;   /* 隐藏溢出 */
-    background-color: #000 !important; /* 强制黑底 */
+    height: 100vh;      /* 强制占满一屏高度，这样父级 section 就有高度了 */
+    
+    background-color: #000 !important; /* 强制黑底，防止透视 */
+    overflow: hidden;   /* 裁剪掉多余部分 */
     z-index: 1;         /* 基础层级 */
 }
 
 /* === 2. 轮播图单张幻灯片 (保持不变) === */
 .carousel-slide {
     position: absolute; /* 子元素必须是 absolute 才能重叠 */
-    inset: 0;
+    inset: 0;           /* 上下左右贴边 */
     width: 100%;
     height: 100%;
     
@@ -84,7 +85,7 @@ section {
     transition: opacity 1s ease-in-out;
     z-index: 10;
     
-    /* 内容居中布局 (这里也要加上 flex，双重保险) */
+    /* 内容居中 */
     display: flex; 
     flex-direction: column;
     justify-content: center;
