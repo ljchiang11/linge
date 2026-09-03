@@ -1,36 +1,35 @@
-// script.js - 专门存放动作指令
-// --- 1. 轮播图逻辑 ---
+// script.js - 网站核心逻辑
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // ==========================================
+    // 1. 轮播图逻辑 (Carousel)
+    // ==========================================
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.nav-dot');
     let currentIndex = 0;
     let slideInterval;
 
-    // 核心切换逻辑
+    // 核心切换函数
     const showSlide = (index) => {
-        // 边界处理
+        // 边界处理：如果是最后一张再点下一张，回到第一张
         if (index >= slides.length) currentIndex = 0;
         else if (index < 0) currentIndex = slides.length - 1;
         else currentIndex = index;
 
-        // 清除所有 active
-        slides.forEach(s => s.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
+        // 1. 移除所有 active 状态
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
 
-        // 激活当前项
+        // 2. 给当前项添加 active 状态
         slides[currentIndex].classList.add('active');
         dots[currentIndex].classList.add('active');
     };
 
-    // 👇 关键：把函数挂到 window 上，HTML 的 onclick 才能找到它
-    window.goToSlide = (index) => {
-        showSlide(index);
-        resetTimer(); // 手动点击后重置自动播放，防止刚点完马上又跳
-    };
-
-    // 自动播放
+    // 自动播放计时器
     const startTimer = () => {
-        slideInterval = setInterval(() => showSlide(currentIndex + 1), 5000);
+        slideInterval = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000); // 5秒切换一次
     };
 
     const resetTimer = () => {
@@ -38,33 +37,51 @@ document.addEventListener('DOMContentLoaded', () => {
         startTimer();
     };
 
-    // 初始化
-    showSlide(0);
-    startTimer();
-});
+    // 👇 关键修复：将函数挂载到 window 对象，让 HTML 的 onclick 能找到它
+    window.goToSlide = (index) => {
+        showSlide(index);
+        resetTimer(); // 用户手动点击后，重置计时器
+    };
 
-    // --- 2. 模态框逻辑 ---
+    // 初始化轮播图
+    if (slides.length > 0) {
+        showSlide(0);
+        startTimer();
+    }
+
+
+    // ==========================================
+    // 2. 模态框逻辑 (Modal)
+    // ==========================================
     const joinBtn = document.querySelector('.join-btn');
     const modalOverlay = document.querySelector('.modal-overlay');
     const closeModalBtn = document.querySelector('.close-modal');
 
     if (joinBtn && modalOverlay) {
+        // 点击加入按钮 -> 打开弹窗
         joinBtn.addEventListener('click', () => {
             modalOverlay.classList.add('open');
         });
+
+        // 点击背景遮罩 -> 关闭弹窗
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
                 modalOverlay.classList.remove('open');
             }
         });
-        if(closeModalBtn){
+
+        // 点击关闭按钮(X) -> 关闭弹窗
+        if (closeModalBtn) {
             closeModalBtn.addEventListener('click', () => {
                 modalOverlay.classList.remove('open');
             });
         }
     }
 
-    // --- 3. 导航栏平滑滚动 ---
+
+    // ==========================================
+    // 3. 导航栏平滑滚动 (Smooth Scroll)
+    // ==========================================
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     
     navLinks.forEach(anchor => {
@@ -79,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth',
                     block: 'start' 
                 });
-            } else {
-                console.warn("找不到ID为 " + targetId + " 的区域，请检查HTML中的id是否匹配");
             }
         });
+    });
+
+}); // <--- 注意：这是 DOMContentLoaded 的最终闭合括号
