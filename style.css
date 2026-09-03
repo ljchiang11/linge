@@ -61,27 +61,43 @@ section {
 }
 
 /* 轮播图相关 */
+/* === 1. 轮播图父容器 (必须加上这个，否则子元素没地方定位) === */
+/* 注意：请确认你的HTML里包裹幻灯片的那个大div类名是不是 .carousel-container */
+/* 如果是 .hero-section 或其他名字，请把下面的 .carousel-container 改成对应的名字 */
+.carousel-container {
+    position: relative; /* 【关键】作为定位基准 */
+    width: 100%;
+    height: 100vh;      /* 强制占满一屏高度 */
+    overflow: hidden;   /* 隐藏溢出，防止滚动条出现 */
+    background-color: #000; /* 兜底黑色背景 */
+    z-index: 1;         /* 基础层级 */
+}
+
+/* === 2. 轮播图单张幻灯片 (修复版) === */
 .carousel-slide {
-    background-color: #000 !important; /* 强制黑色背景，防止透明 */
-    position: relative; /* 关键：绝对定位，让它们叠在一起 */
-    inset: 0;           /* 关键：上下左右都贴边，填满父容器 */
+    /* 【核心修复】从 relative 改为 absolute，实现重叠 */
+    position: absolute; 
+    inset: 0;           /* 上下左右贴边，填满父容器 */
     width: 100%;
     height: 100%;
+    
+    background-color: #000 !important; /* 强制黑色背景，防止透明透出下层内容 */
+    
     opacity: 0;         /* 默认隐藏 */
     transition: opacity 1s ease-in-out; /* 淡入淡出效果 */
-    z-index: 10;         /* 层级为10 */
+    z-index: 10;        /* 层级高于父容器 */
     
-    /* 确保内容居中（如果里面用了 flex 布局） */
+    /* 内容居中布局 */
     display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* 激活状态 */
+/* === 3. 激活状态 (显示当前那张图) === */
 .carousel-slide.active {
-    opacity: 1; /* 只有加了 active 才显示 */
-    z-index: 1; /* 层级提到最高 */
+    opacity: 1;         /* 显示 */
+    z-index: 20;        /* 确保当前显示的在最上面 */
 }
 
 /* 成员头像 */
