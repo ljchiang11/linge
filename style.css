@@ -1,3 +1,18 @@
+/* =========================================
+   🔥 针对 Tailwind CDN 的强制修正 🔥
+   ========================================= */
+html {
+    height: auto !important; /* 强制解除 Tailwind 可能施加的高度限制 */
+    min-height: 100% !important;
+    overflow-y: scroll !important; /* 强制显示滚动条并允许滚动 */
+}
+
+body {
+    height: auto !important; /* 防止 body 被锁死在 100vh */
+    min-height: 100vh !important;
+    overflow-y: visible !important; /* 让 body 的滚动可见 */
+    position: relative !important; /* 确保定位上下文正常 */
+}
 /* 开启全页原生平滑滚动 */
 html {
     scroll-behavior: smooth;
