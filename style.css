@@ -10,7 +10,7 @@ html {
 body {
     height: auto !important; /* 防止 body 被锁死在 100vh */
     min-height: 100vh !important;
-    overflow-y: visible !important; /* 让 body 的滚动可见 */
+    overflow-y: auto !important; /* 让 body 的滚动可见 */
     position: relative !important; /* 确保定位上下文正常 */
 }
 /* 开启全页原生平滑滚动 */
