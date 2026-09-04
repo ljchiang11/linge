@@ -82,13 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 3. 导航栏平滑滚动 (Smooth Scroll)
     // ==========================================
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     
     navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); 
-            
             const targetId = this.getAttribute('href');
+            
+            // 👇 关键修复：如果 href 仅仅是 "#"，不要拦截，直接放行！
+            if (targetId === '#') return; 
+
+            e.preventDefault(); // 只有真正的锚点（如 #about）才阻止默认行为
+            
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
@@ -99,5 +103,3 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-}); // <--- 注意：这是 DOMContentLoaded 的最终闭合括号
