@@ -1,4 +1,4 @@
-// script.js - 网站核心逻辑 (修复版)
+// script.js - 网站核心逻辑 (最终修复版)
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -12,27 +12,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 核心切换函数
     const showSlide = (index) => {
-        if (!slides.length) return; // 防止报错
+        if (!slides.length) return; // 防止没有图片时报错
 
-        // 边界处理
+        // 边界处理：循环播放
         if (index >= slides.length) currentIndex = 0;
         else if (index < 0) currentIndex = slides.length - 1;
         else currentIndex = index;
 
-        // 移除所有 active 状态
+        // 1. 移除所有 active 状态
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // 给当前项添加 active 状态
+        // 2. 给当前项添加 active 状态
         slides[currentIndex].classList.add('active');
-        if(dots[currentIndex]) dots[currentIndex].classList.add('active');
+        if(dots[currentIndex]) {
+            dots[currentIndex].classList.add('active');
+        }
     };
 
     // 自动播放计时器
     const startTimer = () => {
         slideInterval = setInterval(() => {
             showSlide(currentIndex + 1);
-        }, 5000); 
+        }, 5000); // 5秒切换一次
     };
 
     const resetTimer = () => {
@@ -40,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         startTimer();
     };
 
-    // 挂载到 window 供 HTML onclick 调用
+    // 👇 关键修复：将函数挂载到 window 对象，让 HTML 的 onclick 能找到它
     window.goToSlide = (index) => {
         showSlide(index);
-        resetTimer();
+        resetTimer(); 
     };
 
-    // 初始化
+    // 初始化轮播图
     if (slides.length > 0) {
         showSlide(0);
         startTimer();
@@ -54,12 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 2. 模态框逻辑 (Modal) - 防止因找不到元素报错
+    // 2. 模态框逻辑 (Modal) - 增加存在性检查
     // ==========================================
     const joinBtn = document.querySelector('.join-btn');
     const modalOverlay = document.querySelector('.modal-overlay');
     const closeModalBtn = document.querySelector('.close-modal');
 
+    // 只有当这些元素都存在时才添加监听器，防止报错
     if (joinBtn && modalOverlay) {
         joinBtn.addEventListener('click', () => {
             modalOverlay.classList.add('open');
@@ -89,8 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); 
             
             const targetId = this.getAttribute('href');
-            // 处理 href="#" 的空链接情况
-            if (targetId === '#') return; 
+            
+            // 修复：如果链接只是 "#" (例如空的社交链接)，则不执行滚动
+            if (targetId === '#' || targetId === '') return; 
 
             const targetElement = document.querySelector(targetId);
             
@@ -102,32 +106,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // ==========================================
-    // 4. [新增] 滚轮穿透逻辑 (解决首屏无法滚动问题)
-    // ==========================================
-    const carouselSection = document.getElementById('carousel');
-    if (carouselSection) {
-        carouselSection.addEventListener('wheel', (e) => {
-            // 如果正在看第一张图且向上滚，或者看最后一张图且向下滚，
-            // 这里我们简单处理：只要鼠标在轮播图上，就允许页面滚动
-            // 除非你想做那种“必须滑完图片才能走”的效果，否则直接放行即可
-            
-            // 这里的逻辑是：不做任何阻止，让浏览器默认行为发生（即滚动页面）
-            // 如果你的CSS里写了 overflow:hidden 导致不能滚，那是CSS的问题。
-            // 但通常 h-screen + overflow-hidden 会吞掉事件。
-            
-            // 简单的修复：如果用户想往下滚去 About 区域
-            if (e.deltaY > 0) { 
-               // 向下滚，尝试滚动到 about
-               // 这里其实不需要JS干预，只要CSS没写死就行。
-               // 但如果CSS写了 overflow-hidden，JS可以强制跳转：
-               /* 
-               e.preventDefault(); 
-               document.getElementById('about').scrollIntoView({behavior: 'smooth'});
-               */
-            }
-        }, { passive: true }); // passive: true 保证滚动流畅
-    }
 
 }); // <--- 确保这个括号是文件的最后一行！
