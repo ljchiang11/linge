@@ -29,13 +29,13 @@
   </nav>
 
  <!-- Hero Carousel -->
-<section class="relative h-screen overflow-hidden bg-black">
+<section id="carousel" class="relative h-screen w-full overflow-hidden bg-black">
   <div class="hero-glow top-1/4 left-1/4"></div>
   <div class="hero-glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);"></div>
   
-  <div id="carousel" class="w-full h-full">
+  <div class="w-full h-full">
     <!-- 第1张图：路径指向 images 文件夹下的 hero1.jpg -->
-    <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero1.jpg') center/cover;">
+    <div class="carousel-slide active absolute inset-0 transition-opacity duration-1000 opacity-100">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center px-6">
           <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">上海灵格吉他乐团</p>
@@ -200,14 +200,15 @@
     </div>
   </nav>
 
- <!-- Hero Carousel -->
-<section class="relative h-screen overflow-hidden bg-black">
+<!-- Hero Carousel -->
+<section id="carousel" class="relative h-screen w-full overflow-hidden bg-black">
   <div class="hero-glow top-1/4 left-1/4"></div>
   <div class="hero-glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);"></div>
   
-  <div id="carousel" class="w-full h-full">
-    <!-- 第1张图：路径指向 images 文件夹下的 hero1.jpg -->
-    <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero1.jpg') center/cover;">
+  <div class="w-full h-full relative">
+    <!-- 第1张图：补上了背景图代码！ -->
+    <div class="carousel-slide active absolute inset-0 transition-opacity duration-1000 opacity-100" 
+         style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero1.jpg') center/cover;">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center px-6">
           <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">上海灵格吉他乐团</p>
@@ -217,8 +218,9 @@
       </div>
     </div>
 
-    <!-- 第2张图：路径指向 images 文件夹下的 hero2.jpg -->
-    <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero2.jpg') center/cover;">
+    <!-- 第2张图 -->
+    <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-0" 
+         style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero2.jpg') center/cover;">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center px-6">
           <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">Concert Hall</p>
@@ -228,8 +230,9 @@
       </div>
     </div>
 
-    <!-- 第3张图：路径指向 images 文件夹下的 hero3.jpg -->
-    <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero3.jpg') center/cover;">
+    <!-- 第3张图 -->
+    <div class="carousel-slide absolute inset-0 transition-opacity duration-1000 opacity-0" 
+         style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero3.jpg') center/cover;">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center px-6">
           <p class="text-amber-400 text-sm tracking-[0.3em] mb-4 uppercase">Ensemble</p>
@@ -241,14 +244,14 @@
   </div>
 
   <!-- 底部小圆点（完全保持原样） -->
-  <div class="absolute bottom-32 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+  <div class="absolute bottom-32 left-1/2 -translate-x-1/2 flex gap-3 z-20">
     <div class="nav-dot active" onclick="goToSlide(0)"></div>
     <div class="nav-dot" onclick="goToSlide(1)"></div>
     <div class="nav-dot" onclick="goToSlide(2)"></div>
   </div>
 
            <!-- === 底部社交按钮 (极简线条版) === -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-8 z-50">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-8 z-20">
       
            <!-- 1. 哔哩哔哩 (Bilibili) - 修正天线高度版 -->
       <a href="https://b23.tv/M7GQ4mA" class="social-btn group" title="哔哩哔哩">
